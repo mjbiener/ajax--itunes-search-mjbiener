@@ -3,9 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="moment.min.js"></script>
   <script src="main.js" defer></script>
   <title>Music Search</title>
 </head>
 <body>
+  <header>
+    <div class= "header" id="header">
+      <h1>Your Custom Music Site</h1>
+    </div>
+  </header>
+  
+  <div class= "container" id="container">
+    <form id="music-search">
+      <div class="form-field">
+        <input class = "search" id="search-box" type="text" placeholder="Enter your search here" required>
+      </div>
+      <div class="form-field">
+        <button id="search-button" type="submit">Search Music</button> 
+      </div>
+    </form>
+  <section id="songs">
+    <ul id="song-list" class="list"></ul>
+  </section>
+  </div>
 </body>
 </html>

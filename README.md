@@ -4,7 +4,7 @@
 
 For this app, we will request data from the iTunes API.
 
-You'll use artist data from the API to display song titles, and then allow the user to select and play song previews. Here is an idea of what the [end result](musicapp.jpg) could look like, though you can customize the design however you like.
+You'll use artist data from the API to display song titles, and then allow the user to select and play song previews. Here is an idea of what the [end result](musicap--p.jpg) could look like, though you can customize the design however you like.
 
 Here are the steps you'll need to take in order to complete this project.
 
