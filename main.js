@@ -37,6 +37,12 @@ function renderMusicResults (song) {
     // let songData = document.createElement ('div')
     let indSong = document.createElement('li')
     
+    let songAudio = document.createElement('audio')
+    songAudio.className = 'music-player'
+    songAudio .src = song.previewUrl
+    // songAudio.controls = true;
+    indSong.appendChild(songAudio)
+    
     let artwork = document.createElement('img')
     artwork.src=song.artworkUrl100
     indSong.appendChild(artwork)
@@ -54,11 +60,21 @@ function renderMusicResults (song) {
     trackId.innerText=song.trackId
     // indSong.appendChild(trackId)
 
-    let songAudio = document.createElement('audio')
-    songAudio.className = 'music-player'
-    songAudio .src = song.previewUrl
-    songAudio.controls = true;
-    indSong.appendChild(songAudio)
+    // let songAudio = document.createElement('audio')
+    // songAudio.className = 'music-player'
+    // songAudio .src = song.previewUrl
+    // // songAudio.controls = true;
+    // indSong.appendChild(songAudio)
 
     songList.appendChild(indSong)
+
+songList.addEventListener('click', e => {
+    playMusic(e.target.parentElement)
+})
+}
+
+function playMusic(song) {
+    let audio = document.querySelector("audio")
+    console.log(song.firstElementChild)
+    audio.src = song.firstElementChild.src
 }
