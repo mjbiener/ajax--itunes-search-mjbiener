@@ -8,12 +8,21 @@ const songList= document.querySelector('#song-list')
 form.addEventListener('submit', function (event) {
     // console.log('running')
     event.preventDefault()
-    let searchInput = document.querySelector('#search-box').value
-    searchRequest(searchInput)
+    // clearResults()
+    searchRequest()
 })
 
+
+// function clearResults () {
+//     let songs = document.querySelectorAll('#songs')
+//         for (let song of songs) {
+//             song.remove();
+//         }
+// }
+
+
 function searchRequest () {
-    let searchInput = document.querySelector('.search').value
+    let searchInput = document.querySelector('#search-box').value
     fetch(url + searchInput)
     .then(res => res.json())
     .then(data => {
@@ -40,22 +49,16 @@ function renderMusicResults (song) {
     artistName.innerText=song.artistName
     indSong.appendChild(artistName)
     songList.appendChild(indSong)
+
+    let trackId= document.createElement('p')
+    trackId.innerText=song.trackId
+    // indSong.appendChild(trackId)
+
+    let songAudio = document.createElement('div')
+    songAudio.innerHTML = `<audio controls src="${song.previewUrl}"</audio>`
+    // songAudio.src=song.previewUrl
+    indSong.appendChild(songAudio)
 }
-
-    // musicEl.appendChild(title)
-    // songList.appendChild(musicEl)
-    
-    // renderMusicInformation(musicEl, musicObj)
-    // songList.appendChild(musicEl)
-
-
-
-// function renderMusicInformation (songListItem, musicObj) {
-//     console.log(musicObj)
-//     songListItem.innerHTML = `<p>${musicObj.trackName}<p>`
-    // songListItem.innerHTML = `<p>${musicObj.artistName}<p>`
-
-// }
 
 
 
