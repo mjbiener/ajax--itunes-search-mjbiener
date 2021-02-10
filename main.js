@@ -25,11 +25,27 @@ function searchRequest () {
     .then(res => res.json())
     .then(data => {
         for (let song of data.results) {
-            // console.log(song) //.trackName  .artistName //
+            if (song.trackName !== undefined) {
+            
             renderMusicResults(song)
+            } 
+            else {
+                noResults(song)
+                // noResults(song)
+            }
         }
     })   
 }
+
+function noResults (song) {
+    let indSong = document.createElement('li')
+        let noResult = document.createElement('p')
+        noResult.innerText="No results found"
+        indSong.appendChild(noResult)
+        songList.appendChild(indSong)
+}
+
+
 
 function renderMusicResults (song) {
     // let songData = document.createElement ('div')
@@ -38,6 +54,7 @@ function renderMusicResults (song) {
     let songAudio = document.createElement('audio')
     songAudio.className = 'music-player'
     songAudio.src = song.previewUrl
+    songAudio.volume = .4
     // songAudio.controls = true;
     indSong.appendChild(songAudio)
     
