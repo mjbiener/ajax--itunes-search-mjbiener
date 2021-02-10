@@ -12,14 +12,12 @@ form.addEventListener('submit', function (event) {
     searchRequest();
 })
 
-
 function clearResults () {
     let songs = document.querySelectorAll("li")
         for (let song of songs) {
             song.remove();
         }
 }
-
 
 function searchRequest () {
     let searchInput = document.querySelector('#search-box').value
@@ -47,24 +45,21 @@ function renderMusicResults (song) {
     artwork.src=song.artworkUrl100
     indSong.appendChild(artwork)
     
-    let title = document.createElement('p')
-    title.innerText = song.trackName
-    indSong.appendChild(title)
-    
     let artistName= document.createElement('H4')
     artistName.innerText=song.artistName
     indSong.appendChild(artistName)
-    // songList.appendChild(indSong)
+    
+    let title = document.createElement('p')
+    title.innerText = song.trackName
+    indSong.appendChild(title)
 
+    let releaseDate = document.createElement('p')
+    releaseDate.innerText =`Release Date: ${moment(song.releaseDate). format('ll')}`;
+    indSong.appendChild(releaseDate)
+    
     let trackId= document.createElement('p')
     trackId.innerText=song.trackId
     // indSong.appendChild(trackId)
-
-    // let songAudio = document.createElement('audio')
-    // songAudio.className = 'music-player'
-    // songAudio .src = song.previewUrl
-    // // songAudio.controls = true;
-    // indSong.appendChild(songAudio)
 
     songList.appendChild(indSong)
 
