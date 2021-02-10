@@ -7,18 +7,18 @@ const songList= document.querySelector('#song-list')
 
 form.addEventListener('submit', function (event) {
     // console.log('running')
-    event.preventDefault()
-    // clearResults()
-    searchRequest()
+    event.preventDefault();
+    clearResults();
+    searchRequest();
 })
 
 
-// function clearResults () {
-//     let songs = document.querySelectorAll('#songs')
-//         for (let song of songs) {
-//             song.remove();
-//         }
-// }
+function clearResults () {
+    let songs = document.querySelectorAll("li")
+        for (let song of songs) {
+            song.remove();
+        }
+}
 
 
 function searchRequest () {
@@ -27,14 +27,14 @@ function searchRequest () {
     .then(res => res.json())
     .then(data => {
         for (let song of data.results) {
-            console.log(song.trackName) //.trackName  .artistName //
+            console.log(song) //.trackName  .artistName //
             renderMusicResults(song)
         }
     })   
 }
 
 function renderMusicResults (song) {
-    let songData = document.createElement ('div')
+    // let songData = document.createElement ('div')
     let indSong = document.createElement('li')
     
     let artwork = document.createElement('img')
@@ -44,22 +44,21 @@ function renderMusicResults (song) {
     let title = document.createElement('p')
     title.innerText = song.trackName
     indSong.appendChild(title)
-        
+    
     let artistName= document.createElement('H4')
     artistName.innerText=song.artistName
     indSong.appendChild(artistName)
-    songList.appendChild(indSong)
+    // songList.appendChild(indSong)
 
     let trackId= document.createElement('p')
     trackId.innerText=song.trackId
     // indSong.appendChild(trackId)
 
-    let songAudio = document.createElement('div')
-    songAudio.innerHTML = `<audio controls src="${song.previewUrl}"</audio>`
-    // songAudio.src=song.previewUrl
+    let songAudio = document.createElement('audio')
+    songAudio.className = 'music-player'
+    songAudio .src = song.previewUrl
+    songAudio.controls = true;
     indSong.appendChild(songAudio)
+
+    songList.appendChild(indSong)
 }
-
-
-
-// listMusic()
