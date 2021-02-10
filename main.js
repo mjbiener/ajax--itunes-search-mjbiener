@@ -25,7 +25,7 @@ function searchRequest () {
     .then(res => res.json())
     .then(data => {
         for (let song of data.results) {
-            console.log(song) //.trackName  .artistName //
+            // console.log(song) //.trackName  .artistName //
             renderMusicResults(song)
         }
     })   
@@ -37,7 +37,7 @@ function renderMusicResults (song) {
     
     let songAudio = document.createElement('audio')
     songAudio.className = 'music-player'
-    songAudio .src = song.previewUrl
+    songAudio.src = song.previewUrl
     // songAudio.controls = true;
     indSong.appendChild(songAudio)
     
@@ -45,16 +45,16 @@ function renderMusicResults (song) {
     artwork.src=song.artworkUrl100
     indSong.appendChild(artwork)
     
-    let artistName= document.createElement('H4')
+    let artistName= document.createElement('h3')
     artistName.innerText=song.artistName
     indSong.appendChild(artistName)
     
-    let title = document.createElement('p')
+    let title = document.createElement('h5')
     title.innerText = song.trackName
     indSong.appendChild(title)
 
     let releaseDate = document.createElement('p')
-    releaseDate.innerText =`Release Date: ${moment(song.releaseDate). format('ll')}`;
+    releaseDate.innerText =`Release Date: ${moment(song.releaseDate). format('l')}`;
     indSong.appendChild(releaseDate)
     
     let trackId= document.createElement('p')

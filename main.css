@@ -1,0 +1,38 @@
+
+
+body{
+    background-color:rgb(149, 167, 185);
+}
+
+h1 {
+    text-align: center;
+}
+h4 {
+    margin-top: 1px;
+}
+.audio-player{
+    text-align: center
+}
+#search-box{
+    width: 20rem;
+}
+
+#search-button {
+margin-top: .5rem;
+}
+
+#song-list {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /* border: solid black 3px; */
+    
+}
+
+li {
+    text-align: center;
+    margin: .2em;
+    background-color: white;
+    border: solid black 3px;
+}
