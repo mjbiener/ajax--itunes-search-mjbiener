@@ -14,11 +14,16 @@ h4 {
     text-align: center
 }
 #search-box{
-    width: 20rem;
+    width: 15rem;
+    height: 2rem;
+    border-radius: 5em;
 }
 
 #search-button {
-margin-top: .5rem;
+    margin-top: .5rem;
+    width: 10rem;
+    height: 2rem;
+    border-radius: 10em;
 }
 
 #song-list {
@@ -35,4 +40,5 @@ li {
     margin: .2em;
     background-color: white;
     border: solid black 3px;
+    border-radius: 1em;
 }

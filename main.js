@@ -6,7 +6,6 @@ const form =document.querySelector('#music-search-form')
 const songList= document.querySelector('#song-list')
 
 form.addEventListener('submit', function (event) {
-    // console.log('running')
     event.preventDefault();
     clearResults();
     searchRequest();
@@ -16,7 +15,7 @@ function clearResults () {
     let songs = document.querySelectorAll("li")
         for (let song of songs) {
             song.remove();
-        }
+        }      
 }
 
 function searchRequest () {
@@ -26,26 +25,25 @@ function searchRequest () {
     .then(data => {
         for (let song of data.results) {
             if (song.trackName !== undefined) {
-            
             renderMusicResults(song)
-            } 
-            else {
+        } 
+            else{
                 noResults(song)
-                // noResults(song)
             }
         }
-    })   
+    })
+    .catch(error => {
+        catchError()}) 
 }
 
 function noResults (song) {
     let indSong = document.createElement('li')
-        let noResult = document.createElement('p')
-        noResult.innerText="No results found"
-        indSong.appendChild(noResult)
-        songList.appendChild(indSong)
+        
+    let noResult = document.createElement('p')
+    noResult.innerText= "No results found"
+    indSong.appendChild(noResult)
+    songList.appendChild(indSong)
 }
-
-
 
 function renderMusicResults (song) {
     // let songData = document.createElement ('div')
@@ -55,7 +53,6 @@ function renderMusicResults (song) {
     songAudio.className = 'music-player'
     songAudio.src = song.previewUrl
     songAudio.volume = .4
-    // songAudio.controls = true;
     indSong.appendChild(songAudio)
     
     let artwork = document.createElement('img')
@@ -76,11 +73,10 @@ function renderMusicResults (song) {
     
     let trackId= document.createElement('p')
     trackId.innerText=song.trackId
-    // indSong.appendChild(trackId)
 
     songList.appendChild(indSong)
 
-songList.addEventListener('click', e => {
+    songList.addEventListener('click', e => {
     playMusic(e.target.parentElement)
 })
 }
@@ -89,4 +85,12 @@ function playMusic(song) {
     let audio = document.querySelector("audio")
     console.log(song.firstElementChild)
     audio.src = song.firstElementChild.src
+}
+
+function catchError () {
+    let indSong = document.createElement('li')
+    let errorEl = document.createElement('p')
+    errorEl.innerText = 'Error'
+    indSong.appendChild(errorEl)
+    songList.appendChild(indSong)
 }
