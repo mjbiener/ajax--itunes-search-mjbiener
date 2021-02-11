@@ -1,5 +1,3 @@
-console.log ("hello")
-
 const url='https://itunes.apple.com/search?term='
 const proxyUrl= 'https://proxy-itunes-api.glitch.me/search?term='
 const form =document.querySelector('#music-search-form')
@@ -7,6 +5,7 @@ const songList= document.querySelector('#song-list')
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
+    clearErrors();
     clearResults();
     searchRequest();
 })
@@ -20,13 +19,15 @@ function clearResults () {
 
 function searchRequest () {
     let searchInput = document.querySelector('#search-box').value
+    searchInput = searchInput.replace(/ /g, "+");
+    console.log(searchInput)
     fetch(url + searchInput)
     .then(res => res.json())
     .then(data => {
         if (data.results.length > 0) {
             for (let song of data.results) {
                 renderMusicResults(song)
-            }     
+            }    
         } else {
             noResults()
             }
@@ -46,7 +47,6 @@ function noResults () {
 }
 
 function renderMusicResults (song) {
-    // let songData = document.createElement ('div')
     let indSong = document.createElement('li')
     
     let songAudio = document.createElement('audio')
@@ -93,4 +93,11 @@ function catchError () {
     errorEl.innerText = 'Error'
     indSong.appendChild(errorEl)
     songList.appendChild(indSong)
+}
+
+function clearErrors () {
+    let errors = document.querySelectorAll("li")
+    for (let error of errors) {
+        error.remove();
+    }    
 }
