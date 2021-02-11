@@ -23,20 +23,20 @@ function searchRequest () {
     fetch(url + searchInput)
     .then(res => res.json())
     .then(data => {
-        for (let song of data.results) {
-            if (song.trackName !== undefined) {
-            renderMusicResults(song)
-        } 
-            else{
-                noResults(song)
+        if (data.results.length > 0) {
+            for (let song of data.results) {
+                renderMusicResults(song)
+            }     
+        } else {
+            noResults()
             }
-        }
-    })
+        })
+    
     .catch(error => {
         catchError()}) 
 }
 
-function noResults (song) {
+function noResults () {
     let indSong = document.createElement('li')
         
     let noResult = document.createElement('p')

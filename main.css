@@ -42,3 +42,7 @@ li {
     border: solid black 3px;
     border-radius: 1em;
 }
+
+h6 {
+    text-align: center;
+}
